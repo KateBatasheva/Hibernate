@@ -30,7 +30,7 @@ public class CrudApp {
     public static void readAndPrintExample(long id) {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            Products product = session.get(Products.class, 1L);
+            Products product = session.get(Products.class, id);
             System.out.println(product);
             session.getTransaction().commit();
         }
@@ -57,10 +57,10 @@ public class CrudApp {
     public static void main(String[] args) {
         try {
             init();
-            // createExample();
-            // readAndPrintExample();
-            // updateExample();
-            // deleteExample();
+             createExample("pomegranate", 120);
+             readAndPrintExample(2);
+             updateExample(2,200);
+             deleteExample(3);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
